@@ -7,6 +7,7 @@ def Menu():
     print("5.Estadisticas generales")
     print("6.Salir")
 allow = False
+allow1 = False
 messengers = {}
 while allow == False:
     Menu()
@@ -21,11 +22,22 @@ while allow == False:
                 for i in range(num):
                     name = input("Ingrese el nombre del repartidor: ")
                     deliver = int(input("Cuantos paquetes entregó: "))
-                    zone = input("Zona asiganda: ")
-                    messengers[name] = {'Entregas':deliver,'Zona':zone}
+                    if deliver <= 0:
+                        print("Cantidad no valida")
+                    else:
+                        zone = input("Zona asiganda: ")
+                        messengers[name] = {'Entregas':deliver,'Zona':zone}
+                allow1 = True
         case 2:
-            for code,value in messengers.items():
-                print(f"Nombre del repartidor: {code},Cantidad de entregas: {value['Entregas']},Zona: {value['Zona']}")
+            if allow1 == False:
+                print("Aún no hay datos que ingresar")
+            else:
+                cont = 1
+                for code,value in messengers.items():
+                    print(f"Repartidor {cont}:")
+                    print(f"Nombre del repartidor: {code},Cantidad de entregas: {value['Entregas']},Zona: {value['Zona']}")
+                    print(" ")
+                    cont = cont + 1
         case 3:
             print("Mostrar ")
         case 4:
