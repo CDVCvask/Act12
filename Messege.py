@@ -6,6 +6,23 @@ def Menu():
     print("4.Buscar repartidor")
     print("5.Estadisticas generales")
     print("6.Salir")
+def Q_S(Sorted):
+    Lower = {}
+    Same = {}
+    Upper = {}
+    if len(Sorted) <= 1:
+        return Sorted
+    for code,value in Sorted.items():
+        Check = value['Entregas']
+        break
+    for code, value in Sorted.items():
+        if value['Entregas'] < Check:
+            Lower[code] = {'Entregas': value['Entregas'],'Zona': value['Zona']}
+        if value['Entregas'] == Check:
+            Same[code] = {'Entregas': value['Entregas'],'Zona': value['Zona']}
+        if value['Entregas'] > Check:
+            Upper[code] = {'Entregas': value['Entregas'], 'Zona': value['Zona']}
+    return Q_S(Lower) + Same + Q_S(Upper)
 allow = False
 allow1 = False
 messengers = {}
@@ -39,7 +56,16 @@ while allow == False:
                     print(" ")
                     cont = cont + 1
         case 3:
-            print("Mostrar ")
+            if allow1 == False:
+                print("Aún no hay datos que ingresar")
+            else:
+                cont = 1
+            result = Q_S(messengers)
+            for code,value in result.items():
+                print(f"Repartidor {cont}:")
+                print(f"Nombre del repartidor: {code},Cantidad de entregas: {value['Entregas']},Zona: {value['Zona']}")
+                print(" ")
+                cont = cont + 1
         case 4:
             look = input("Ingrese el nombre del repartidor que busca: ")
         case 5:
