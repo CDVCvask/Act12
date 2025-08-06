@@ -1,3 +1,6 @@
+from contextlib import nullcontext
+
+
 def Menu():
     print("Paquetería BingBong")
     print("1.Ingresar repartidores: ")
@@ -31,6 +34,13 @@ def Bus_Sec(Looking,Find):
             return Name
         else:
             return -1
+def Total(Dict,T):
+    if len(Dict) == 0:
+        return T
+    else:
+        for code,value in Dict.items():
+           T = T + value['Entregas']
+    return T
 allow = False
 allow1 = False
 messengers = {}
@@ -46,12 +56,18 @@ while allow == False:
             else:
                 for i in range(num):
                     name = input("Ingrese el nombre del repartidor: ")
-                    deliver = int(input("Cuantos paquetes entregó: "))
-                    if deliver <= 0:
-                        print("Cantidad no valida")
+                    if name not in messengers:
+                        deliver = int(input("Cuantos paquetes entregó: "))
+                        if deliver <= 0:
+                            print("Cantidad no valida")
+                        else:
+                            zone = input("Zona asiganda: ")
+                            if zone is "":
+                                print("La zona no puede quedar vacía")
+                            else:
+                                messengers[name] = {'Entregas': deliver, 'Zona': zone}
                     else:
-                        zone = input("Zona asiganda: ")
-                        messengers[name] = {'Entregas':deliver,'Zona':zone}
+                        print("No se pueden repetir nombres")
                 allow1 = True
         case 2:
             if allow1 == False:
@@ -76,9 +92,18 @@ while allow == False:
                 cont = cont + 1
         case 4:
             look = input("Ingrese el nombre del repartidor que busca: ")
-
+            find = Bus_Sec(messengers,look)
+            if find == -1:
+                print(f"El repartidor {look} no existe")
+            else:
+                print(f"Repartidor {find} existe")
+                for code,value in messengers.items():
+                    name = code.lower()
+                    find = find.lower()
+                    if code == find:
+                        print(f"Nombre: {code},Entregas{value['Entregas']},Zona{value['Zona']}")
         case 5:
-            print("Mostrar ")
+            print(f"Total de paquetes entregados:")
         case 6:
             print("Gracias por utilizar el programa")
             break
