@@ -23,6 +23,14 @@ def Q_S(Sorted):
         if value['Entregas'] > Check:
             Upper[code] = {'Entregas': value['Entregas'], 'Zona': value['Zona']}
     return Q_S(Lower) + Same + Q_S(Upper)
+def Bus_Sec(Looking,Find):
+    for code,value in Looking.items():
+        Name = code.lower()
+        Find = Find.lower()
+        if Name == Find:
+            return Name
+        else:
+            return -1
 allow = False
 allow1 = False
 messengers = {}
@@ -68,6 +76,7 @@ while allow == False:
                 cont = cont + 1
         case 4:
             look = input("Ingrese el nombre del repartidor que busca: ")
+
         case 5:
             print("Mostrar ")
         case 6:
