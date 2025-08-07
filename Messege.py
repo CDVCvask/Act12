@@ -32,11 +32,8 @@ def Bus_Sec(Looking,Find):
             return code
     return -1
 def Total(Dict,T):
-    if len(Dict) == 0:
-        return T
-    else:
-        for code,value in Dict.items():
-           T = T + value['Entregas']
+    for code,value in Dict.items():
+        T = T + value['Entregas']
     return T
 allow = False
 allow1 = False
@@ -97,7 +94,12 @@ while allow == False:
                 value = messengers[find]
                 print(f"Nombre: {find},Entregas: {value['Entregas']},Zona: {value['Zona']}")
         case 5:
-            print(f"Total de paquetes entregados:")
+            total = Total(messengers,0)
+            print(f"Total de paquetes entregados: {total}")
+            avarage = Total/len(messengers)
+            print(f"El promedio de paquetes entregados es: {avarage}")
+            print(f"El repartidor con más entregas es: ")
+            print(f"El repartidor con menos entregas es: ")
         case 6:
             print("Gracias por utilizar el programa")
             break
