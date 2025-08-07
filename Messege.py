@@ -62,7 +62,7 @@ while allow == False:
                             print("Cantidad no valida")
                         else:
                             zone = input("Zona asiganda: ")
-                            if zone is "":
+                            if zone == "":
                                 print("La zona no puede quedar vacía")
                             else:
                                 messengers[name] = {'Entregas': deliver, 'Zona': zone}
@@ -84,7 +84,7 @@ while allow == False:
                 print("Aún no hay datos que ingresar")
             else:
                 cont = 1
-            result = Q_S(messengers)
+                result = Q_S(messengers)
             for code,value in result.items():
                 print(f"Repartidor {cont}:")
                 print(f"Nombre del repartidor: {code},Cantidad de entregas: {value['Entregas']},Zona: {value['Zona']}")
