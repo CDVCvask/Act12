@@ -35,6 +35,24 @@ def Total(Dict,T):
     for code,value in Dict.items():
         T = T + value['Entregas']
     return T
+def Most(Dict,High):
+    for code,value in Dict.items():
+        if value['Entregas'] > High:
+            High = value['Entregas']
+            name = code
+    return name
+def Least(Dict,Low,cont):
+    if cont == 1:
+        for code,value in Dict.items():
+            low = value['Entregas']
+            break
+    else:
+        for code,value in Dict.items():
+            if value['Entregas'] < Low:
+                low = value['Entregas']
+                name = code
+    cont = cont + 1
+    return name
 allow = False
 allow1 = False
 messengers = {}
@@ -98,8 +116,12 @@ while allow == False:
             print(f"Total de paquetes entregados: {total}")
             avarage = Total/len(messengers)
             print(f"El promedio de paquetes entregados es: {avarage}")
-            print(f"El repartidor con más entregas es: ")
-            print(f"El repartidor con menos entregas es: ")
+            top = Most(messengers,0)
+            low = Least(messengers,0,1)
+            high = messengers[top]
+            least = messengers[low]
+            print(f"El repartidor con más entregas es: {high} con {high['Entregas']}")
+            print(f"El repartidor con menos entregas es: {least} con {least['Entregas']}")
         case 6:
             print("Gracias por utilizar el programa")
             break
