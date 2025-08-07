@@ -28,10 +28,8 @@ def Q_S(Sorted):
     return {**Q_S(Upper), **Same, **Q_S(Lower)}
 def Bus_Sec(Looking,Find):
     for code,value in Looking.items():
-        Name = code.lower()
-        Find = Find.lower()
-        if Name == Find:
-            return Name
+        if code == Find:
+            return code
     return -1
 def Total(Dict,T):
     if len(Dict) == 0:
@@ -96,7 +94,8 @@ while allow == False:
                 print(f"El repartidor {look} no existe")
             else:
                 print(f"Repartidor {find} existe")
-                print(f"Nombre: {messengers[find]['Nombre']},Entregas: {messengers[find]['Entregas']},Zona: {messengers[find]['Zona']}")
+                value = messengers[find]
+                print(f"Nombre: {find},Entregas: {value['Entregas']},Zona: {value['Zona']}")
         case 5:
             print(f"Total de paquetes entregados:")
         case 6:
