@@ -1,5 +1,3 @@
-from contextlib import nullcontext
-
 
 def Menu():
     print("Paquetería BingBong")
@@ -42,16 +40,13 @@ def Most(Dict,High):
             name = code
     return name
 def Least(Dict,Low,cont):
-    if cont == 1:
-        for code,value in Dict.items():
+    for code,value in Dict.items():
+        low = value['Entregas']
+        break
+    for code,value in Dict.items():
+        if value['Entregas'] < Low:
             low = value['Entregas']
-            break
-    else:
-        for code,value in Dict.items():
-            if value['Entregas'] < Low:
-                low = value['Entregas']
-                name = code
-    cont = cont + 1
+            name = code
     return name
 allow = False
 allow1 = False
@@ -114,14 +109,15 @@ while allow == False:
         case 5:
             total = Total(messengers,0)
             print(f"Total de paquetes entregados: {total}")
-            avarage = Total/len(messengers)
-            print(f"El promedio de paquetes entregados es: {avarage}")
+            num = len(messengers)
+            average = total / num
+            print(f"El promedio de paquetes entregados es: {average}")
             top = Most(messengers,0)
             low = Least(messengers,0,1)
             high = messengers[top]
             least = messengers[low]
-            print(f"El repartidor con más entregas es: {high} con {high['Entregas']}")
-            print(f"El repartidor con menos entregas es: {least} con {least['Entregas']}")
+            print(f"El repartidor con más entregas es: {top} con {high['Entregas']}")
+            print(f"El repartidor con menos entregas es: {low} con {least['Entregas']}")
         case 6:
             print("Gracias por utilizar el programa")
             break
