@@ -25,7 +25,7 @@ def Q_S(Sorted):
             Same[code] = {'Entregas': value['Entregas'],'Zona': value['Zona']}
         if value['Entregas'] > Check:
             Upper[code] = {'Entregas': value['Entregas'], 'Zona': value['Zona']}
-    return Q_S(Lower) + Same + Q_S(Upper)
+    return {**Q_S(Lower), **Same, **Q_S(Upper)}
 def Bus_Sec(Looking,Find):
     for code,value in Looking.items():
         Name = code.lower()
