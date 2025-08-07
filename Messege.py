@@ -32,8 +32,7 @@ def Bus_Sec(Looking,Find):
         Find = Find.lower()
         if Name == Find:
             return Name
-        else:
-            return -1
+    return -1
 def Total(Dict,T):
     if len(Dict) == 0:
         return T
@@ -97,11 +96,7 @@ while allow == False:
                 print(f"El repartidor {look} no existe")
             else:
                 print(f"Repartidor {find} existe")
-                for code,value in messengers.items():
-                    name = code.lower()
-                    find = find.lower()
-                    if code == find:
-                        print(f"Nombre: {code},Entregas{value['Entregas']},Zona{value['Zona']}")
+                print(f"Nombre: {messengers[find]['Nombre']},Entregas: {messengers[find]['Entregas']},Zona: {messengers[find]['Zona']}")
         case 5:
             print(f"Total de paquetes entregados:")
         case 6:
